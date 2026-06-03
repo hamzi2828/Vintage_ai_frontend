@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --parchment: #EDE0CC;
+  --parchment-warm: #F5EBD6;
+  --ink: #1A1310;
+  --ink-soft: #2C211B;
+  --oxblood: #5C1B1B;
+  --oxblood-deep: #3F1010;
+  --gilt: #B8943A;
+  --teal-forgotten: #3A5A56;
+}
+
+html, body {
+  background-color: var(--parchment);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 1024px) {
+  html { font-size: 15px; }
+}
+@media (max-width: 640px) {
+  html { font-size: 14px; }
+}
+@media (max-width: 380px) {
+  html { font-size: 13px; }
+}
+
+body {
+  font-family: var(--font-eb-garamond), Georgia, serif;
+  font-feature-settings: "liga", "dlig", "onum", "kern";
+  background-image:
+    radial-gradient(ellipse at 20% 10%, rgba(184,148,58,0.10), transparent 55%),
+    radial-gradient(ellipse at 90% 80%, rgba(92,27,27,0.10), transparent 55%),
+    repeating-linear-gradient(0deg, rgba(26,19,16,0.03) 0 1px, transparent 1px 3px);
+}
+
+/* Paper grain overlay — applied via .grain class */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10  0 0 0 0 0.07  0 0 0 0 0.06  0 0 0 0.45 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+.paper {
+  position: relative;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(184,148,58,0.08), transparent 35%),
+    radial-gradient(circle at 88% 82%, rgba(92,27,27,0.07), transparent 40%),
+    linear-gradient(180deg, #F5EBD6 0%, #EDE0CC 100%);
+}
+
+.deckle-bottom {
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60' preserveAspectRatio='none'><path d='M0,0 L1200,0 L1200,40 C1100,55 1000,30 900,45 C800,60 700,30 600,42 C500,54 400,28 300,44 C200,58 100,32 0,46 Z'/></svg>");
+          mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60' preserveAspectRatio='none'><path d='M0,0 L1200,0 L1200,40 C1100,55 1000,30 900,45 C800,60 700,30 600,42 C500,54 400,28 300,44 C200,58 100,32 0,46 Z'/></svg>");
+  -webkit-mask-size: 100% 100%;
+          mask-size: 100% 100%;
+}
+
+.ruled {
+  background-image: repeating-linear-gradient(
+    180deg,
+    transparent 0 27px,
+    rgba(58, 90, 86, 0.18) 27px 28px
+  );
+}
+
+.ledger {
+  background-image:
+    linear-gradient(90deg, rgba(92,27,27,0.20) 0 1px, transparent 1px 100%),
+    repeating-linear-gradient(180deg, transparent 0 31px, rgba(26,19,16,0.10) 31px 32px);
+  background-position: 56px 0, 0 0;
+}
+
+.dotted-rule {
+  background-image: radial-gradient(circle, rgba(26,19,16,0.45) 1px, transparent 1.5px);
+  background-size: 8px 2px;
+  background-repeat: repeat-x;
+  background-position: 0 50%;
+  height: 2px;
+}
+
+.dropcap::first-letter {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 600;
+  font-size: 5.4em;
+  float: left;
+  line-height: 0.86;
+  padding: 0.04em 0.12em 0 0;
+  color: var(--oxblood);
+  font-style: italic;
+}
+
+.stamp-edge {
+  border: 1.5px solid currentColor;
+  box-shadow:
+    inset 0 0 0 4px var(--parchment-warm),
+    inset 0 0 0 5px currentColor;
+  border-radius: 4px;
+}
+
+.btn-press {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.8rem 1.3rem 0.85rem;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  color: var(--parchment-warm);
+  background: var(--oxblood);
+  box-shadow:
+    0 1px 0 var(--oxblood-deep),
+    0 2px 0 var(--oxblood-deep),
+    0 3px 0 var(--oxblood-deep),
+    0 4px 0 var(--oxblood-deep),
+    0 6px 14px rgba(63,16,16,0.35);
+  transition: transform 200ms cubic-bezier(.2,.7,.2,1), box-shadow 200ms;
+}
+.btn-press:hover {
+  transform: translateY(2px);
+  box-shadow:
+    0 1px 0 var(--oxblood-deep),
+    0 2px 0 var(--oxblood-deep),
+    0 4px 10px rgba(63,16,16,0.45);
+}
+.btn-press:active { transform: translateY(4px); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 0.9rem;
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  background: transparent;
+  transition: background 180ms, color 180ms;
+}
+.btn-ghost:hover { background: var(--ink); color: var(--parchment-warm); }
+
+.kicker {
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.urdu { font-family: var(--font-nastaliq), serif; direction: rtl; }
+
+.serif-italic {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-style: italic;
+}
+
+/* Custom scrollbar on parchment */
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: #E2D2B6; }
+::-webkit-scrollbar-thumb {
+  background: var(--oxblood);
+  border: 3px solid #E2D2B6;
+  border-radius: 0;
+}
+
+::selection { background: var(--gilt); color: var(--ink); }
