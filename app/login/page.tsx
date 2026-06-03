@@ -12,7 +12,7 @@ type Mode = "signin" | "signup";
 export default function LoginPage() {
   const router = useRouter();
   const [mode, setMode] = useState<Mode>("signin");
-  const [email, setEmail] = useState("usman@ucademy.co.uk");
+  const [email, setEmail] = useState("hamza@gmail.com");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [submitting, setSubmitting] = useState(false);
